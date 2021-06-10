@@ -1,0 +1,25 @@
+{
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "files.autoSave": "onFocusChange",
+    "workbench.settings.useSplitJSON": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=120",
+        "--ignore=E402,F841,F401,E302,E305",
+        "--max-complexity=18",
+    ],
+    "keyboard.dispatch": "keyCode",
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": true,
+    "files.trimTrailingWhitespace": true,
+    "sourcery.token": "user_iRxmEgNk83rDS5sxrRLBQC2OrNx6qmiDw7CAmS1PNIvlpio5GJIyu1EO9es",
+    "explorer.confirmDe{lete": false,
+    "[sass]":{
+        "editor.tabsize": 2,
+    },
+    "[javascript]": {
+        "editor.tabSize": 2,
+    },
+    "[css]": {
+        "editor.tabSize": 2,
+    },
+}
