@@ -1,5 +1,5 @@
 # First load zplug
-source ~/.zplug/init.zsh
+source /home/danielg/.zplug/init.zsh
 
 # Import pulgins
 zplug "eendroroy/alien-minimal"
@@ -39,9 +39,19 @@ zplug load --verbose
 # Vi Mode
 bindkey -v
 
+function historyfilepath()
+{
+    local user=whoami
+    if [ "$user" == "danielg" ]; then
+        echo /home/danielg/.zhistory
+    elif [ "$user" == "root" ]; then
+        echo /root/.zhistory
+    fi
+}
+
 ### HISTORY SETTINGS ######
 # Set HistFile
-HISTFILE=/home/danielg/.zhistory
+HISTFILE=$(historyfilepath)
 SAVEHIST=10000
 HISTSIZE=15000
 # immediate append to hist
