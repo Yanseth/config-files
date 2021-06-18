@@ -2,7 +2,7 @@
 source ~/.zplug/init.zsh
 
 # Import pulgins
-zplug "eendroroy/alien"  # alien theme
+zplug "eendroroy/alien-minimal"
 
 # Git addons
 zplug "davidde/git"
@@ -17,11 +17,13 @@ zplug "tjquillan/zsh-pipenv"
 # Upgrade pyenv with 'pyenv update'
 zplug "mattberther/zsh-pyenv"
 
-# Better vi mode
-# zplug "jeffreytse/zsh-vi-mode"
-
 # Prepend sudo to prvious command in vi mode
 zplug "hcgraf/zsh-sudo"
+
+# Some coloring helpers
+zplug "zpm-zsh/colorize"
+zplug "ael-code/zsh-colored-man-pages"
+zplug "Kallahan23/zsh-colorls"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -34,25 +36,8 @@ fi
 # Load zplug plugins
 zplug load --verbose
 
-#### Config Theme #####
-export ALIEN_SECTIONS_LEFT=(
-  exit
-  battery
-  user
-  path
-  vcs_branch:async
-  vcs_status:async
-  vcs_dirty:async
-  newline
-  ssh
-  venv
-  prompt
-)
-export ALIEN_THEME="green"
-export ALIEN_USE_NERD_FONT=1
-
-# Load Theme
-source ~/.zplug/repos/eendroroy/alien/alien.zsh
+# Vi Mode
+bindkey -v
 
 ### HISTORY SETTINGS ######
 # Set HistFile
@@ -69,12 +54,9 @@ setopt HIST_IGNORE_ALL_DUPS
 # Use powerline
 USE_POWERLINE="true"
 
-# Vi Mode
-bindkey -v
-
-# Aliases
-alias ls=colorls
-alias la='colorls -lah'
+# Use LS Colors
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
+alias ls='ls --color=auto'
 
 # Use fzf
 source /usr/share/fzf/completion.zsh

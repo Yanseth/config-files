@@ -1,9 +1,9 @@
 " Set up vim-plug
 " Set a path
 "
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
 
-Plug 'tpope/vim-sensible'
+" plug 'tpope/vim-sensible'
 
 " Turn on line numbers
 set nu
