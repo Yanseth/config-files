@@ -1,3 +1,6 @@
+# Set up needed vars
+HISTFILE=''
+
 # First load zplug
 source /home/danielg/.zplug/init.zsh
 
@@ -39,19 +42,22 @@ zplug load --verbose
 # Vi Mode
 bindkey -v
 
-function historyfilepath()
+function historyfile()
 {
-    local user=whoami
-    if [ "$user" == "danielg" ]; then
-        echo /home/danielg/.zhistory
-    elif [ "$user" == "root" ]; then
-        echo /root/.zhistory
+    if [[ ${USER} = "danielg" ]]; then
+        HISTFILE=/home/danielg/.zhistory
+        return 0
+    elif [[ ${USER} = "root" ]]; then
+        HISTFILE=/root/.zhistory
+        return 0
+    else
+        return 1
     fi
 }
 
 ### HISTORY SETTINGS ######
 # Set HistFile
-HISTFILE=$(historyfilepath)
+historyfile
 SAVEHIST=10000
 HISTSIZE=15000
 # immediate append to hist
@@ -71,4 +77,6 @@ alias ls='ls --color=auto'
 # Use fzf
 source /usr/share/fzf/completion.zsh
 source /usr/share/fzf/key-bindings.zsh
+
+unfunction historyfile
 
