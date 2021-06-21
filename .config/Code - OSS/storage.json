@@ -3,6 +3,9 @@
     "openedPathsList": {
         "entries": [
             {
+                "folderUri": "file:///home/danielg/Workspace/workout_journal"
+            },
+            {
                 "folderUri": "file:///home/danielg/Workspace/nextjs-blog"
             }
         ]
@@ -41,7 +44,8 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor"
+                                    "label": "&&Reopen Closed Editor",
+                                    "enabled": false
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -50,7 +54,18 @@
                                     "id": "openRecentFolder",
                                     "uri": {
                                         "$mid": 1,
-                                        "fsPath": "/home/danielg/Workspace/nextjs-blog",
+                                        "fsPath": "/home/danielg/Workspace/workout_journal",
+                                        "external": "file:///home/danielg/Workspace/workout_journal",
+                                        "path": "/home/danielg/Workspace/workout_journal",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/Workspace/workout_journal"
+                                },
+                                {
+                                    "id": "openRecentFolder",
+                                    "uri": {
+                                        "$mid": 1,
                                         "external": "file:///home/danielg/Workspace/nextjs-blog",
                                         "path": "/home/danielg/Workspace/nextjs-blog",
                                         "scheme": "file"
@@ -91,13 +106,11 @@
                     },
                     {
                         "id": "workbench.action.files.save",
-                        "label": "&&Save",
-                        "enabled": false
+                        "label": "&&Save"
                     },
                     {
                         "id": "workbench.action.files.saveAs",
-                        "label": "Save &&As...",
-                        "enabled": false
+                        "label": "Save &&As..."
                     },
                     {
                         "id": "saveAll",
@@ -169,13 +182,11 @@
                     },
                     {
                         "id": "workbench.action.files.revert",
-                        "label": "Re&&vert File",
-                        "enabled": false
+                        "label": "Re&&vert File"
                     },
                     {
                         "id": "workbench.action.closeActiveEditor",
-                        "label": "&&Close Editor",
-                        "enabled": false
+                        "label": "&&Close Editor"
                     },
                     {
                         "id": "workbench.action.closeFolder",
@@ -224,13 +235,11 @@
                     },
                     {
                         "id": "actions.find",
-                        "label": "&&Find",
-                        "enabled": false
+                        "label": "&&Find"
                     },
                     {
                         "id": "editor.action.startFindReplaceAction",
-                        "label": "&&Replace",
-                        "enabled": false
+                        "label": "&&Replace"
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -545,8 +554,7 @@
                     },
                     {
                         "id": "editor.action.toggleWordWrap",
-                        "label": "Toggle &&Word Wrap",
-                        "enabled": false
+                        "label": "Toggle &&Word Wrap"
                     },
                     {
                         "id": "editor.action.toggleMinimap",
@@ -582,7 +590,8 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location"
+                        "label": "&&Last Edit Location",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
@@ -1451,12 +1460,12 @@
     "themeBackground": "#1e1e1e",
     "windowsState": {
         "lastActiveWindow": {
-            "folder": "file:///home/danielg/Workspace/nextjs-blog",
-            "backupPath": "/home/danielg/.config/Code - OSS/Backups/4cd670d48b190cac6922b69ff8372990",
+            "folder": "file:///home/danielg/Workspace/workout_journal",
+            "backupPath": "/home/danielg/.config/Code - OSS/Backups/4404af7c6696922687bad81aa5dcfec1",
             "uiState": {
                 "mode": 1,
-                "x": 1955,
-                "y": 62,
+                "x": 1959,
+                "y": 89,
                 "width": 1498,
                 "height": 805
             }

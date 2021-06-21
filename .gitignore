@@ -1,0 +1,3 @@
+# Hide log files
+*.log
+logs/
