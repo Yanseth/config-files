@@ -1,6 +1,8 @@
 {
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.linux": "/home/danielg/.config/nvim/init.vim",
+    // VSCode is not accepting caps as an esc key; add the following,
+    "keyboard.dispatch": "keyCode",
     "[css]": {
         "editor.tabSize": 2,
     },
@@ -10,4 +12,5 @@
     "[javascript]": {
         "editor.tabSize": 2,
     },
+    "markdown.preview.typographer": true,
 }

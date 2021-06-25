@@ -1,0 +1,19 @@
+# Hide log files
+*.log
+logs/
+
+# Cashed
+Cache*/
+cache*/
+*Cache/
+Backups/
+Local*/
+*Storage/
+Storage*/
+Network*
+Transport*
+
+
+# Session
+Session*/
+session*/
