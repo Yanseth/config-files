@@ -1,8 +1,19 @@
-# Set up needed vars
-HISTFILE=''
+# First, figure out if we are in linux or Darwin (mac)
+# Then set some vars for later
+OS="$(uname 2> /dev/null)"
+if [[ "$OS" = "Darwin" ]]; then
+    HOME=/Users/dan.guimaraes
+    export ZPLUG_HOME=/usr/local/opt/zplug
+elif [[ "$OS" = "Linux" ]]; then
+    HOME=/home/danielg
+    export ZPLUG_HOME="$HOME"/.zplug
+else
+    echo "Unknown OS $OS"
+    exit 1
+fi
 
-# First load zplug
-source /home/danielg/.zplug/init.zsh
+# Load zplug
+source $ZPLUG_HOME/init.zsh
 
 # Import pulgins
 zplug "eendroroy/alien-minimal"
@@ -52,7 +63,7 @@ function historyfile()
         HISTFILE=/root/.zhistory
         return 0
     else
-        HISTFILE=/home/"$USER"/.zhistory
+        HISTFILE="$HOME"/zhistory
         return 0
     fi
 }
@@ -72,35 +83,61 @@ setopt HIST_IGNORE_ALL_DUPS
 # Use powerline
 USE_POWERLINE="true"
 
-# Use LS Colors
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}  
-alias ls='ls --color=auto'
-
 # Expand alias after sudo
 # alias sudo='sudo '
 
-# s6 Aliases
-if [[ "$USER" = "root" ]]; then
-    alias s6rc=s6-rc
-    alias s6u='s6-rc -u change'
-    alias s6d='s6-rc -d change'
-    alias s6r='s6-svc -r'
-    alias s6rcb=s6-rc-bundle
-    alias s6rcbu=s6-rc-bundle-update
-    alias s6rcbc='s6-rc-bundle-update -c'
-else
-    alias s6rc='sudo s6-rc'
-    alias s6u='sudo s6-rc -u change'
-    alias s6d='sudo s6-rc -d change'
-    alias s6r='sudo s6-svc -r'
-    alias s6rcb='sudo s6-rc-bundle'
-    alias s6rcbu='sudo s6-rc-bundle-update'
-    alias s6rcbc='sudo s6-rc-bundle-update -c'
+if [[ "$OS" = "Linux" ]] ; then
+    alias ls='ls --color=auto'
+
+    # Check if this linux is usind s6 instead of initd
+    if [[ -d /ect/s6 ]]; then
+    # Alias S6 commands for Linux using s6-rc
+        if [[ "$USER" = "root" ]]; then
+            alias s6rc=s6-rc
+            alias s6u='s6-rc -u change'
+            alias s6d='s6-rc -d change'
+            alias s6r='s6-svc -r'
+            alias s6rcb=s6-rc-bundle
+            alias s6rcbu=s6-rc-bundle-update
+            alias s6rcbc='s6-rc-bundle-update -c'
+        else
+            alias s6rc='sudo s6-rc'
+            alias s6u='sudo s6-rc -u change'
+            alias s6d='sudo s6-rc -d change'
+            alias s6r='sudo s6-svc -r'
+            alias s6rcb='sudo s6-rc-bundle'
+            alias s6rcbu='sudo s6-rc-bundle-update'
+            alias s6rcbc='sudo s6-rc-bundle-update -c'
+        fi
+    fi
 fi
 
 # Use fzf
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
+if [[ "$OS" = "Darwin" ]]; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+else
+    source /usr/share/fzf/completion.zsh
+    source /usr/share/fzf/key-bindings.zsh
+fi
+
+# Brew auto completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+  autoload -Uz compinit
+fi
 
 unfunction historyfile
+
+# Some mac specific options
+if [[ "$OS" = "Darwin" ]]; then
+    # Generated for envman. Do not edit.
+    [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+    # Path to nerd fonts in Mac
+    export PATH="/Users/dan.guimaraes/.local/bin:$PATH"
+
+    # LS Colors for mac
+    export CLICOLOR=1;
+    export LSCOLORS=exfxcxdxbxegedabagacad; # It is the default value on OSX, so this line can be omitted
+fi
 

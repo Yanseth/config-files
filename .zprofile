@@ -5,5 +5,4 @@ eval "$(pyenv init --path)"
 
 # Load rbenv
 eval "$(rbenv init -)"
-eval "$(rbenv init -)"
 

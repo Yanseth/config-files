@@ -1,6 +1,15 @@
 " Specify directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
 
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+" Vim Sensible for some sane settings
+Plug 'tpope/vim-sensible'
+
+call plug#end()
+
+" End plugin section
 
 " Set leader key to ,
 let mapleader = ','
