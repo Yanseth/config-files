@@ -30,12 +30,14 @@ call plug#end()
 " Remeber, you can reload a file with source %
 " Install these plugins with :PlugInstall
 
-set nu
-set rnu
+set nu " Show line numbers
+set rnu " Show relative numbers
 
 set tabstop=4
 set softtabstop=0
 set shiftwidth=4
 set smarttab
 set expandtab
+
+source $VIMRUNTIME/vimrc_example.vim
 

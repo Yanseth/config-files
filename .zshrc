@@ -37,7 +37,6 @@ zplug "plugins/sudo", from:oh-my-zsh
 # Some coloring helpers
 zplug "zpm-zsh/colorize"
 zplug "ael-code/zsh-colored-man-pages"
-zplug "Kallahan23/zsh-colorls"
 zplug "zsh-users/zsh-syntax-highlighting"
 
 # Some mac specific ones
@@ -157,8 +156,21 @@ if [[ -f ~/.appfolio_env ]]; then
     source ~/.appfolio_env
 fi
 
-if [[ $USER = 'danielg' ]]; then
-    export PATH="/home/danielg/.asdf/installs/rust/1.54.0/bin:$PATH"
-    alias ls="exa --color=always --icons -al --group-directories-first"
+# Load asdf
+if [[ "$OS" = "Linux" ]]; then
+    . /opt/asdf-vm/asdf.sh
+fi
+
+# If cargo exists, add the bin it belongs to, this is good for asdf cargo
+# if command -v cargo &> /dev/null; then
+#     cargopath=${$(which cargo)%/cargo} # Strip the string followed by %
+#     echo "$cargopath"
+#     export PATH="$cargopath:$PATH"
+# fi
+
+# Replace ls with exa if exa is installed, requires cargo
+# You will need to sim link exa to asdf's shims dir ~/.asdf/shims/
+if command -v exa &> /dev/null; then
+    alias ls="exa --color=always --icons -al --group-directories-first --git"
 fi
 
