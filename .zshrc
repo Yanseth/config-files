@@ -34,14 +34,25 @@ zplug "mattberther/zsh-pyenv"
 # Prepend sudo to prvious command in vi mode
 zplug "plugins/sudo", from:oh-my-zsh
 
-# Better history
-zplug "plugins/history", from:oh-my-zsh
-
 # Some coloring helpers
 zplug "zpm-zsh/colorize"
 zplug "ael-code/zsh-colored-man-pages"
 zplug "Kallahan23/zsh-colorls"
 zplug "zsh-users/zsh-syntax-highlighting"
+
+# Some mac specific ones
+# plugins=(asdf bundler docker gem git git-auto-fetch kubectl rails rake sudo vscode)
+if [[ "$OS" = "Darwin" ]]; then
+    zplug "plugins/asdf", from:oh-my-zsh
+    zplug "plugins/bundler", from:oh-my-zsh
+    zplug "plugins/docker", from:oh-my-zsh
+    zplug "plugins/gem", from:oh-my-zsh
+    zplug "plugins/git-auto-fetch", from:oh-my-zsh
+    zplug "plugins/kubectl", from:oh-my-zsh
+    zplug "plugins/rails", from:oh-my-zsh
+    zplug "plugins/rake", from:oh-my-zsh
+    zplug "plugins/vscode", from:oh-my-zsh
+fi
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -63,7 +74,7 @@ function historyfile()
         HISTFILE=/root/.zhistory
         return 0
     else
-        HISTFILE="$HOME"/zhistory
+        HISTFILE="$HOME"/.zhistory
         return 0
     fi
 }
@@ -139,5 +150,15 @@ if [[ "$OS" = "Darwin" ]]; then
     # LS Colors for mac
     export CLICOLOR=1;
     export LSCOLORS=exfxcxdxbxegedabagacad; # It is the default value on OSX, so this line can be omitted
+fi
+
+export PATH="/usr/local/sbin:$PATH"
+if [[ -f ~/.appfolio_env ]]; then
+    source ~/.appfolio_env
+fi
+
+if [[ $USER = 'danielg' ]]; then
+    export PATH="/home/danielg/.asdf/installs/rust/1.54.0/bin:$PATH"
+    alias ls="exa --color=always --icons -al --group-directories-first"
 fi
 
