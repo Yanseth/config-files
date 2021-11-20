@@ -1,6 +1,6 @@
 # First, figure out if we are in linux or Darwin (mac)
 # Then set some vars for later
-OS="$(uname 2> /dev/null)"
+OS=$(uname 2> /dev/null)
 if [[ "$OS" = "Darwin" ]]; then
     HOME=/Users/dan.guimaraes
     export ZPLUG_HOME=/usr/local/opt/zplug
@@ -16,7 +16,7 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 # Import pulgins
-zplug "eendroroy/alien-minimal"
+# zplug "eendroroy/alien-minimal"
 
 # Git addons
 zplug "davidde/git"
@@ -96,29 +96,24 @@ USE_POWERLINE="true"
 # Expand alias after sudo
 # alias sudo='sudo '
 
-if [[ "$OS" = "Linux" ]] ; then
-    alias ls='ls --color=auto'
-
-    # Check if this linux is usind s6 instead of initd
-    if [[ -d /ect/s6 ]]; then
+if [[ "$OS" = "Linux" ]] && [[ -d /ect/s6/ ]] ; then
     # Alias S6 commands for Linux using s6-rc
-        if [[ "$USER" = "root" ]]; then
-            alias s6rc=s6-rc
-            alias s6u='s6-rc -u change'
-            alias s6d='s6-rc -d change'
-            alias s6r='s6-svc -r'
-            alias s6rcb=s6-rc-bundle
-            alias s6rcbu=s6-rc-bundle-update
-            alias s6rcbc='s6-rc-bundle-update -c'
-        else
-            alias s6rc='sudo s6-rc'
-            alias s6u='sudo s6-rc -u change'
-            alias s6d='sudo s6-rc -d change'
-            alias s6r='sudo s6-svc -r'
-            alias s6rcb='sudo s6-rc-bundle'
-            alias s6rcbu='sudo s6-rc-bundle-update'
-            alias s6rcbc='sudo s6-rc-bundle-update -c'
-        fi
+    if [[ "$USER" = "root" ]]; then
+        alias s6rc=s6-rc
+        alias s6u='s6-rc -u change'
+        alias s6d='s6-rc -d change'
+        alias s6r='s6-svc -r'
+        alias s6rcb=s6-rc-bundle
+        alias s6rcbu=s6-rc-bundle-update
+        alias s6rcbc='s6-rc-bundle-update -c'
+    else
+        alias s6rc='sudo s6-rc'
+        alias s6u='sudo s6-rc -u change'
+        alias s6d='sudo s6-rc -d change'
+        alias s6r='sudo s6-svc -r'
+        alias s6rcb='sudo s6-rc-bundle'
+        alias s6rcbu='sudo s6-rc-bundle-update'
+        alias s6rcbc='sudo s6-rc-bundle-update -c'
     fi
 fi
 
@@ -161,16 +156,17 @@ if [[ "$OS" = "Linux" ]]; then
     . /opt/asdf-vm/asdf.sh
 fi
 
-# If cargo exists, add the bin it belongs to, this is good for asdf cargo
-# if command -v cargo &> /dev/null; then
-#     cargopath=${$(which cargo)%/cargo} # Strip the string followed by %
-#     echo "$cargopath"
-#     export PATH="$cargopath:$PATH"
-# fi
-
 # Replace ls with exa if exa is installed, requires cargo
 # You will need to sim link exa to asdf's shims dir ~/.asdf/shims/
 if command -v exa &> /dev/null; then
     alias ls="exa --color=always --icons -al --group-directories-first --git"
 fi
 
+if command -v bat &> /dev/null; then
+    alias bat=cat
+fi
+
+export PATH=/home/danielg/.local/bin:"$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
+eval "$(starship init zsh)"

@@ -13,4 +13,6 @@
         "editor.tabSize": 2,
     },
     "markdown.preview.typographer": true,
+    "files.autoSave": "onFocusChange",
+    "omnisharp.useGlobalMono": "always",
 }
