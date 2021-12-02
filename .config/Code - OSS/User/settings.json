@@ -15,4 +15,5 @@
     "markdown.preview.typographer": true,
     "files.autoSave": "onFocusChange",
     "omnisharp.useGlobalMono": "always",
+    "rust.all_features": true,
 }

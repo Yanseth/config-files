@@ -168,5 +168,6 @@ fi
 
 export PATH=/home/danielg/.local/bin:"$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+export CARGO_HOME="$HOME/.asdf/shims/"
 
 eval "$(starship init zsh)"
